@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ЖК «Лучший» — квартиры от ЛСР</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ШАПКА красная с белым логотипом ЛСР -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">ЛСР</div>
+            <div class="header-sub">Жилой комплекс «Лучший»</div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Герой-секция -->
+            <div class="hero">
+                <h1>Ваша новая квартира в ЖК «Лучший»</h1>
+                <p>Современный минимализм, продуманные планировки и комфорт городской жизни</p>
+            </div>
+
+            <!-- Блок фильтрации -->
+            <div class="filters-card">
+                <div class="filters-title">🎯 Подберите квартиру</div>
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label for="rooms">Количество комнат</label>
+                        <select id="rooms">
+                            <option value="all">Любые</option>
+                            <option value="1">1 комната</option>
+                            <option value="2">2 комнаты</option>
+                            <option value="3">3 комнаты</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="minPrice">Цена от (₽)</label>
+                        <input type="number" id="minPrice" placeholder="0" value="0">
+                    </div>
+                    <div class="filter-group">
+                        <label for="maxPrice">Цена до (₽)</label>
+                        <input type="number" id="maxPrice" placeholder="30 млн" value="30000000">
+                    </div>
+                    <div class="filter-group">
+                        <label for="minArea">Площадь от (м²)</label>
+                        <input type="number" id="minArea" placeholder="0" value="0">
+                    </div>
+                    <div class="filter-group">
+                        <label for="maxArea">Площадь до (м²)</label>
+                        <input type="number" id="maxArea" placeholder="150" value="150">
+                    </div>
+                    <button class="reset-btn" id="resetFilters">Сбросить фильтры</button>
+                </div>
+            </div>
+
+            <!-- Результаты / список квартир -->
+            <div class="results-header">
+                <span id="apartmentCount">0</span> квартир найдено
+            </div>
+            <div class="apartments-grid" id="apartmentsList">
+                <!-- динамически загружаемые карточки квартир -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Модальное окно для бронирования -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-title">📝 Бронирование квартиры</div>
+            <div id="modalApartmentInfo" class="modal-apartment-info"></div>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="userName">Ваше имя *</label>
+                    <input type="text" id="userName" required placeholder="Иван Иванов">
+                </div>
+                <div class="form-group">
+                    <label for="userPhone">Телефон *</label>
+                    <input type="tel" id="userPhone" required placeholder="+7 (900) 123-45-67">
+                </div>
+                <div class="form-group">
+                    <label for="userEmail">Email</label>
+                    <input type="email" id="userEmail" placeholder="ivan@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="comment">Комментарий</label>
+                    <textarea id="comment" rows="2" placeholder="Удобное время для связи..."></textarea>
+                </div>
+                <button type="submit" class="submit-booking-btn">Забронировать сейчас</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Уведомление (тост) -->
+    <div id="toastMessage" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
