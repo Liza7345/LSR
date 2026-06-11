@@ -2,101 +2,56 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>ЖК «Лучший» — квартиры от ЛСР</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЖК «Лучший»</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ШАПКА красная с белым логотипом ЛСР -->
     <header class="header">
-        <div class="container header-container">
+        <div class="container">
             <div class="logo">ЛСР</div>
-            <div class="header-sub">Жилой комплекс «Лучший»</div>
+            <div>ЖК «Лучший»</div>
         </div>
     </header>
 
-    <main class="main">
-        <div class="container">
-            <!-- Герой-секция -->
-            <div class="hero">
-                <h1>Ваша новая квартира в ЖК «Лучший»</h1>
-                <p>Современный минимализм, продуманные планировки и комфорт городской жизни</p>
-            </div>
+    <main class="container">
+        <h1>Квартиры в ЖК «Лучший»</h1>
 
-            <!-- Блок фильтрации -->
-            <div class="filters-card">
-                <div class="filters-title">🎯 Подберите квартиру</div>
-                <div class="filters-grid">
-                    <div class="filter-group">
-                        <label for="rooms">Количество комнат</label>
-                        <select id="rooms">
-                            <option value="all">Любые</option>
-                            <option value="1">1 комната</option>
-                            <option value="2">2 комнаты</option>
-                            <option value="3">3 комнаты</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="minPrice">Цена от (₽)</label>
-                        <input type="number" id="minPrice" placeholder="0" value="0">
-                    </div>
-                    <div class="filter-group">
-                        <label for="maxPrice">Цена до (₽)</label>
-                        <input type="number" id="maxPrice" placeholder="30 млн" value="30000000">
-                    </div>
-                    <div class="filter-group">
-                        <label for="minArea">Площадь от (м²)</label>
-                        <input type="number" id="minArea" placeholder="0" value="0">
-                    </div>
-                    <div class="filter-group">
-                        <label for="maxArea">Площадь до (м²)</label>
-                        <input type="number" id="maxArea" placeholder="150" value="150">
-                    </div>
-                    <button class="reset-btn" id="resetFilters">Сбросить фильтры</button>
-                </div>
-            </div>
-
-            <!-- Результаты / список квартир -->
-            <div class="results-header">
-                <span id="apartmentCount">0</span> квартир найдено
-            </div>
-            <div class="apartments-grid" id="apartmentsList">
-                <!-- динамически загружаемые карточки квартир -->
-            </div>
+        <div class="filters">
+            <select id="rooms">
+                <option value="all">Все комнаты</option>
+                <option value="1">1 комната</option>
+                <option value="2">2 комнаты</option>
+                <option value="3">3 комнаты</option>
+            </select>
+            <input type="number" id="minPrice" placeholder="Цена от" value="0">
+            <input type="number" id="maxPrice" placeholder="Цена до" value="30000000">
+            <input type="number" id="minArea" placeholder="Площадь от" value="0">
+            <input type="number" id="maxArea" placeholder="Площадь до" value="150">
+            <button id="reset">Сброс</button>
         </div>
+
+        <p>Найдено: <span id="count">0</span></p>
+        <div id="list" class="grid"></div>
     </main>
 
-    <!-- Модальное окно для бронирования -->
-    <div id="bookingModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-title">📝 Бронирование квартиры</div>
-            <div id="modalApartmentInfo" class="modal-apartment-info"></div>
-            <form id="bookingForm">
-                <div class="form-group">
-                    <label for="userName">Ваше имя *</label>
-                    <input type="text" id="userName" required placeholder="Иван Иванов">
-                </div>
-                <div class="form-group">
-                    <label for="userPhone">Телефон *</label>
-                    <input type="tel" id="userPhone" required placeholder="+7 (900) 123-45-67">
-                </div>
-                <div class="form-group">
-                    <label for="userEmail">Email</label>
-                    <input type="email" id="userEmail" placeholder="ivan@example.com">
-                </div>
-                <div class="form-group">
-                    <label for="comment">Комментарий</label>
-                    <textarea id="comment" rows="2" placeholder="Удобное время для связи..."></textarea>
-                </div>
-                <button type="submit" class="submit-booking-btn">Забронировать сейчас</button>
+    <div id="modal" class="modal">
+        <div class="modal-inner">
+            <span class="close">&times;</span>
+            <h3>Бронирование</h3>
+            <div id="modalInfo"></div>
+            <form id="form">
+                <input type="text" id="name" placeholder="Имя *" required>
+                <input type="tel" id="phone" placeholder="Телефон *" required>
+                <input type="email" id="email" placeholder="Email">
+                <textarea id="comment" rows="2" placeholder="Комментарий"></textarea>
+                <button type="submit">Отправить</button>
             </form>
         </div>
     </div>
 
-    <!-- Уведомление (тост) -->
-    <div id="toastMessage" class="toast"></div>
+    <div id="toast"></div>
 
     <script src="script.js"></script>
 </body>
